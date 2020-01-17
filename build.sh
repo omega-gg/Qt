@@ -8,7 +8,7 @@ set -e
 Qt_versionA="5.12.3"
 Qt_versionB="5.12"
 
-Qt_file="$Qt.tar.xz"
+Qt_file="qt-everywhere-src-$Qt_versionA.tar.xz"
 
 Qt="http://download.qt.io/official_releases/qt/$Qt_versionB/$Qt_versionA/single/$Qt_file"
 
