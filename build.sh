@@ -8,9 +8,7 @@ set -e
 Qt_versionA="5.12.3"
 Qt_versionB="5.12"
 
-Qt_file="qt-everywhere-src-$Qt_versionA.tar.xz"
-
-Qt="http://download.qt.io/official_releases/qt/$Qt_versionB/$Qt_versionA/single/$Qt_file"
+Qt="http://download.qt.io/official_releases/qt/$Qt_versionB/$Qt_versionA/single/qt-everywhere-src-$Qt_versionA.tar.xz"
 
 #--------------------------------------------------------------------------------------------------
 # Syntax
@@ -36,7 +34,7 @@ curl -L -o Qt.tar.gz $Qt
 # Qt
 #--------------------------------------------------------------------------------------------------
 
-tar -xf $Qt_file
+tar -xf Qt.tar.gz
 
 #--------------------------------------------------------------------------------------------------
 # Deploy
