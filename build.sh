@@ -8,7 +8,9 @@ set -e
 Qt_versionA="5.12.3"
 Qt_versionB="5.12"
 
-Qt="http://download.qt.io/official_releases/qt/$Qt_versionB/$Qt_versionA/single/qt-everywhere-src-$Qt_versionA.tar.xz"
+Qt="qt-everywhere-src-$Qt_versionA"
+
+Qt_url="http://download.qt.io/official_releases/qt/$Qt_versionB/$Qt_versionA/single/$Qt.tar.xz"
 
 #--------------------------------------------------------------------------------------------------
 # Syntax
@@ -27,14 +29,26 @@ fi
 
 echo ""
 echo "DOWNLOADING Qt"
-echo $Qt
-curl -L -o Qt.tar.gz $Qt
+echo $Qt_url
+curl -L -o Qt.tar.gz $Qt_url
 
 #--------------------------------------------------------------------------------------------------
 # Qt
 #--------------------------------------------------------------------------------------------------
 
 tar -xf Qt.tar.gz
+
+#--------------------------------------------------------------------------------------------------
+# Configure
+#--------------------------------------------------------------------------------------------------
+
+cd $Qt
+
+./configure -release \
+            -opensource \
+            -confirm-license \
+            -nomake examples \
+            -skip qtdoc \
 
 #--------------------------------------------------------------------------------------------------
 # Deploy
