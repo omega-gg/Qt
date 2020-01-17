@@ -11,7 +11,7 @@ jobs:
       docker run -d --name ubuntu -v $PWD:/Qt i386/ubuntu:18.04 tail -f /dev/null
       docker exec -t ubuntu bash -c "cd /Qt/..;
                                      apt-get update;
-                                     apt-get -y install sudo qtdeclarative5-dev;
+                                     apt-get -y install sudo qtdeclarative5-dev curl;
                                      git clone https://github.com/omega-gg/Qt;
                                      cd Qt;
                                      sh build.sh linux"
