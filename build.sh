@@ -28,7 +28,7 @@ fi
 #--------------------------------------------------------------------------------------------------
 
 echo ""
-echo "DOWNLOADING Qt"
+echo "DOWNLOAD Qt"
 echo $Qt_url
 curl -L -o Qt.tar.gz $Qt_url
 
@@ -42,6 +42,8 @@ tar -xf Qt.tar.gz
 # Configure
 #--------------------------------------------------------------------------------------------------
 
+echo "CONFIGURE Qt"
+
 cd $Qt
 
 ./configure -release \
@@ -49,6 +51,7 @@ cd $Qt
             -confirm-license \
             -nomake examples \
             -skip qtdoc \
+            -verbose \
 
 #--------------------------------------------------------------------------------------------------
 # Deploy
