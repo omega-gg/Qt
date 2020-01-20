@@ -4,6 +4,7 @@
 
 jobs:
 - job: linux64
+  timeoutInMinutes: 120
   pool:
     vmImage: "ubuntu-latest"
   steps:
