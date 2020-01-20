@@ -71,4 +71,13 @@ echo "BUILD Qt"
 
 make | tail -n 1000
 
-make install INSTALL_ROOT=$PWD/../deploy
+if [ $1 = "linux" ]; then
+
+    make install INSTALL_ROOT=$PWD/../deploy
+
+    cd ../deploy
+
+    mv usr/local/Qt-$Qt_versionA/* .
+
+    rm -rf usr
+fi
