@@ -60,6 +60,8 @@ cd $Qt
             -opensource \
             -confirm-license \
             -nomake examples \
+            -nomake demos \
+            -nomake tests \
             -skip qtdoc \
             -verbose \
 
