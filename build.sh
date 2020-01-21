@@ -60,7 +60,6 @@ cd $Qt
             -opensource \
             -confirm-license \
             -nomake examples \
-            -nomake demos \
             -nomake tests \
             -skip qtdoc \
             -verbose \
@@ -79,7 +78,11 @@ if [ $1 = "linux" ]; then
 
     cd ../deploy
 
-    mv usr/local/Qt-$Qt_versionA/* .
+    path=Qt/$Qt_versionA
+
+    mkdir -p $path
+
+    mv usr/local/Qt-$Qt_versionA/* $path
 
     rm -rf usr
 fi
