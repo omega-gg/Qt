@@ -70,7 +70,7 @@ cd $Qt
 
 echo "BUILD Qt"
 
-make | tail -n 1000
+make #| tail -n 1000
 
 if [ $1 = "linux" ]; then
 
