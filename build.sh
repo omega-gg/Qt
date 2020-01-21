@@ -72,17 +72,30 @@ echo "BUILD Qt"
 
 make #| tail -n 1000
 
-if [ $1 = "linux" ]; then
+#--------------------------------------------------------------------------------------------------
+# Install
+#--------------------------------------------------------------------------------------------------
 
-    make install INSTALL_ROOT=$PWD/../deploy
+if [ $1 = "macOS" ] || [ $1 = "linux" ]; then
 
-    cd ../deploy
+    make install
+fi
 
-    path=Qt/$Qt_versionA
+#--------------------------------------------------------------------------------------------------
+# Deploy
+#--------------------------------------------------------------------------------------------------
 
-    mkdir -p $path
+cd ../deploy
 
-    mv usr/local/Qt-$Qt_versionA/* $path
+path=Qt/$Qt_versionA
 
-    rm -rf usr
+mkdir -p $path
+
+if [ $1 = "macOS" ]; then
+
+    mv /usr/local/Qt-$Qt_versionA/* $path
+
+elif [ $1 = "linux" ]; then
+
+    mv /usr/local/Qt-$Qt_versionA/* $path
 fi
