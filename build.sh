@@ -48,9 +48,7 @@ if [ $windows = true ]; then
 
     curl -L -o directX.exe $directX
 
-    ls -la .
-
-    ./directX.exe /q
+    #./directX.exe /q
 
 elif [ $1 = "linux" ]; then
 
@@ -99,6 +97,7 @@ if [ $windows = true ]; then
                 -nomake examples \
                 -nomake tests \
                 -skip qtdoc \
+                -opengl desktop \
                 -verbose
 else
     ./configure -release \
