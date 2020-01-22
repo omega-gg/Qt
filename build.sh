@@ -48,7 +48,7 @@ if [ $windows = true ]; then
 
     ls -la .
 
-    directX /silent
+    ./directX.exe /silent
 
 elif [ $1 = "linux" ]; then
 
