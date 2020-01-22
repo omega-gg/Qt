@@ -9,6 +9,10 @@ jobs:
     vmImage: "windows-latest"
   steps:
   - bash: |
+      cd ..
+      curl -L -o 3rdparty.zip --retry 3 http://omega.gg/get/Sky/3rdparty/win32
+      unzip -q 3rdparty.zip
+      cd -
       sh build.sh win32
   - publish: $(System.DefaultWorkingDirectory)/deploy
     artifact: Qt-win32

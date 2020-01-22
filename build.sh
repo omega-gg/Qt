@@ -5,6 +5,12 @@ set -e
 # Settings
 #--------------------------------------------------------------------------------------------------
 
+external="$PWD/../3rdparty"
+
+#--------------------------------------------------------------------------------------------------
+
+MinGW_version="7.3.0"
+
 Qt_versionA="5.12.3"
 Qt_versionB="5.12"
 
@@ -30,6 +36,9 @@ fi
 if [ $1 = "win32" -o $1 = "win64" ]; then
 
     windows=true
+
+    # NOTE Windows: We are building with our own MinGW.
+    PATH="$external/MinGW/$MinGW_version/bin:$PATH"
 else
     windows=false
 fi
@@ -40,7 +49,7 @@ fi
 
 if [ $windows = true ]; then
 
-    echo "DOWNLOAD DirectX"
+    echo "DOWNLOADING DirectX"
 
     directX="https://download.microsoft.com/download/1/7/1/1718CCC4-6315-4D8E-9543-8E28A4E18C4C/dxwebsetup.exe"
 
@@ -59,7 +68,7 @@ fi
 # Download
 #--------------------------------------------------------------------------------------------------
 
-echo "DOWNLOAD Qt"
+echo "DOWNLOADING Qt"
 
 echo $Qt_url
 
@@ -69,7 +78,7 @@ curl -L -o Qt.tar.xz $Qt_url
 # Qt
 #--------------------------------------------------------------------------------------------------
 
-echo "EXTRACT Qt"
+echo "EXTRACTING Qt"
 
 # NOTE Windows: We need to use 7z otherwise it seems to freeze Azure.
 if [ $windows = true ]; then
@@ -84,7 +93,7 @@ fi
 # Configure
 #--------------------------------------------------------------------------------------------------
 
-echo "CONFIGURE Qt"
+echo "CONFIGURING Qt"
 
 cd $Qt
 
@@ -97,7 +106,6 @@ if [ $windows = true ]; then
                 -nomake examples \
                 -nomake tests \
                 -skip qtdoc \
-                -opengl desktop \
                 -verbose
 else
     ./configure -release \
@@ -113,13 +121,18 @@ fi
 # Build
 #--------------------------------------------------------------------------------------------------
 
-echo "BUILD Qt"
+echo "BUILDING Qt"
 
 if [ $windows = true ]; then
 
-    cp -r $(pwd)/qtbase/src/3rdparty/angle/include/* $(pwd)/qtbase/include
+    #----------------------------------------------------------------------------------------------
+    # NOTE windows: This is required for building with OpenGL ES
 
-    ls -la $(pwd)/qtbase/include
+    #cp -r $(pwd)/qtbase/src/3rdparty/angle/include/* $(pwd)/qtbase/include
+
+    #ls -la $(pwd)/qtbase/include
+
+    #----------------------------------------------------------------------------------------------
 
     # NOTE windows: This is required for building qopengl
     #PATH="$(pwd)/qtbase/include/QtANGLE:$PATH"
