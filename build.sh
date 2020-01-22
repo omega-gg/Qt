@@ -46,11 +46,11 @@ if [ $windows = true ]; then
 
     echo $directX
 
-    curl -L $directX
+    curl -L -o directX.exe $directX
 
     ls -la .
 
-    ./dxwebsetup.exe /c:"DXwSetup.exe /windowsupdate" /q /r:n
+    ./directX.exe /q
 
 elif [ $1 = "linux" ]; then
 
