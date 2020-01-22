@@ -63,7 +63,8 @@ echo "EXTRACT Qt"
 if [ $windows = true ]; then
 
     7z x Qt.tar.xz
-    7z x Qt.tar
+
+    7z x $Qt.tar
 else
     tar -xf Qt.tar.xz
 fi
