@@ -85,6 +85,7 @@ if [ $windows = true ]; then
                 -nomake examples \
                 -nomake tests \
                 -skip qtdoc \
+                -opengl \
                 -verbose
 else
     ./configure -release \
@@ -93,6 +94,7 @@ else
                 -nomake examples \
                 -nomake tests \
                 -skip qtdoc \
+                -opengl \
                 -verbose
 fi
 
@@ -104,10 +106,10 @@ echo "BUILD Qt"
 
 if [ $windows = true ]; then
 
-    ls -la $(pwd)/qtbase/include/QtANGLE
+    #ls -la $(pwd)/qtbase/include/QtANGLE
 
     # NOTE windows: This is required for building qopengl
-    PATH="$(pwd)/qtbase/include/QtANGLE:$PATH"
+    #PATH="$(pwd)/qtbase/include/QtANGLE:$PATH"
 
     mingw32-make
 else
