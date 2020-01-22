@@ -63,8 +63,7 @@ echo "EXTRACT Qt"
 if [ $windows = true ]; then
 
     7z x Qt.tar.xz
-
-    7z x $Qt.tar
+    7z x Qt.tar
 else
     tar -xf Qt.tar.xz
 fi
@@ -77,13 +76,24 @@ echo "CONFIGURE Qt"
 
 cd $Qt
 
-./configure -release \
-            -opensource \
-            -confirm-license \
-            -nomake examples \
-            -nomake tests \
-            -skip qtdoc \
-            -verbose \
+if [ $windows = true ]; then
+
+    cmd < configure.bat -release \
+                        -opensource \
+                        -confirm-license \
+                        -nomake examples \
+                        -nomake tests \
+                        -skip qtdoc \
+                        -verbose
+else
+    ./configure -release \
+                -opensource \
+                -confirm-license \
+                -nomake examples \
+                -nomake tests \
+                -skip qtdoc \
+                -verbose
+fi
 
 #--------------------------------------------------------------------------------------------------
 # Build
