@@ -51,7 +51,7 @@ echo "DOWNLOAD Qt"
 
 echo $Qt_url
 
-curl -L -o Qt.tar.xz $Qt_url
+curl -L -o Qt.tar.gz $Qt_url
 
 #--------------------------------------------------------------------------------------------------
 # Qt
@@ -59,7 +59,7 @@ curl -L -o Qt.tar.xz $Qt_url
 
 echo "EXTRACT Qt"
 
-tar -xf Qt.tar.xz
+tar -xf Qt.tar.gz
 
 #--------------------------------------------------------------------------------------------------
 # Configure
