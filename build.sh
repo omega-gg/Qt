@@ -85,7 +85,6 @@ if [ $windows = true ]; then
                 -nomake examples \
                 -nomake tests \
                 -skip qtdoc \
-                -opengl \
                 -verbose
 else
     ./configure -release \
@@ -94,7 +93,6 @@ else
                 -nomake examples \
                 -nomake tests \
                 -skip qtdoc \
-                -opengl \
                 -verbose
 fi
 
@@ -106,7 +104,9 @@ echo "BUILD Qt"
 
 if [ $windows = true ]; then
 
-    #ls -la $(pwd)/qtbase/include/QtANGLE
+    cp -r $(pwd)/qtbase/src/3rdparty/angle/include/* $(pwd)/qtbase/include
+
+    ls -la $(pwd)/qtbase/include
 
     # NOTE windows: This is required for building qopengl
     #PATH="$(pwd)/qtbase/include/QtANGLE:$PATH"
