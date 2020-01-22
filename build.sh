@@ -47,19 +47,7 @@ fi
 # Install
 #--------------------------------------------------------------------------------------------------
 
-if [ $windows = true ]; then
-
-    echo "DOWNLOADING DirectX"
-
-    directX="https://download.microsoft.com/download/1/7/1/1718CCC4-6315-4D8E-9543-8E28A4E18C4C/dxwebsetup.exe"
-
-    echo $directX
-
-    curl -L -o directX.exe $directX
-
-    #./directX.exe /q
-
-elif [ $1 = "linux" ]; then
+if [ $1 = "linux" ]; then
 
     apt-get -y install build-essential qtdeclarative5-dev curl xz-utils python
 fi
@@ -68,8 +56,8 @@ fi
 # Download
 #--------------------------------------------------------------------------------------------------
 
+echo ""
 echo "DOWNLOADING Qt"
-
 echo $Qt_url
 
 curl -L -o Qt.tar.xz $Qt_url
