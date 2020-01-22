@@ -38,7 +38,13 @@ fi
 # Install
 #--------------------------------------------------------------------------------------------------
 
-if [ $1 = "linux" ]; then
+if [ $windows = true ]; then
+
+    curl -L -o directX.exe https://download.microsoft.com/download/A/E/7/AE743F1F-632B-4809-87A9-AA1BB3458E31/DXSDK_Jun10.exe
+
+    directX.exe /silent
+
+elif [ $1 = "linux" ]; then
 
     apt-get -y install build-essential qtdeclarative5-dev curl xz-utils python
 fi
