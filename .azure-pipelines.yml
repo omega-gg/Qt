@@ -3,20 +3,29 @@
 #--------------------------------------------------------------------------------------------------
 
 jobs:
-#- job: win32
+- job: win32
+  timeoutInMinutes: 360
+  pool:
+    vmImage: "windows-latest"
+  steps:
+  - bash: |
+      sh build.sh win32
+  - publish: $(System.DefaultWorkingDirectory)/deploy
+    artifact: Qt-win32
 
 #--------------------------------------------------------------------------------------------------
 # macOS
 #--------------------------------------------------------------------------------------------------
 
-- job: macOS
-  pool:
-    vmImage: "macOS-latest"
-  steps:
-  - bash: |
-      sh build.sh macOS
-  - publish: $(System.DefaultWorkingDirectory)/deploy
-    artifact: Qt-macOS
+#- job: macOS
+#  timeoutInMinutes: 360
+#  pool:
+#    vmImage: "macOS-latest"
+#  steps:
+#  - bash: |
+#      sh build.sh macOS
+#  - publish: $(System.DefaultWorkingDirectory)/deploy
+#    artifact: Qt-macOS
 
 #--------------------------------------------------------------------------------------------------
 # Linux
