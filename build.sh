@@ -59,9 +59,11 @@ curl -L -o Qt.tar.xz $Qt_url
 
 echo "EXTRACT Qt"
 
+# NOTE Windows: We need to use 7z otherwise it seems to freeze Azure.
 if [ $windows = true ]; then
 
     7z x Qt.tar.xz
+    7z x Qt.tar
 else
     tar -xf Qt.tar.xz
 fi
