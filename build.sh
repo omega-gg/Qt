@@ -42,13 +42,15 @@ if [ $windows = true ]; then
 
     echo "DOWNLOAD DirectX"
 
-    echo https://download.microsoft.com/download/A/E/7/AE743F1F-632B-4809-87A9-AA1BB3458E31/DXSDK_Jun10.exe
+    directX="https://download.microsoft.com/download/1/7/1/1718CCC4-6315-4D8E-9543-8E28A4E18C4C/dxwebsetup.exe"
 
-    curl -L -o directX.exe https://download.microsoft.com/download/A/E/7/AE743F1F-632B-4809-87A9-AA1BB3458E31/DXSDK_Jun10.exe
+    echo $directX
+
+    curl -L $directX
 
     ls -la .
 
-    ./directX.exe /silent
+    ./dxwebsetup.exe /c:"DXwSetup.exe /windowsupdate" /q /r:n
 
 elif [ $1 = "linux" ]; then
 
