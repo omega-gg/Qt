@@ -78,13 +78,14 @@ cd $Qt
 
 if [ $windows = true ]; then
 
-    cmd < configure.bat -release \
-                        -opensource \
-                        -confirm-license \
-                        -nomake examples \
-                        -nomake tests \
-                        -skip qtdoc \
-                        -verbose
+    ./configure -platform win32-g++ \
+                -release \
+                -opensource \
+                -confirm-license \
+                -nomake examples \
+                -nomake tests \
+                -skip qtdoc \
+                -verbose
 else
     ./configure -release \
                 -opensource \
