@@ -37,6 +37,8 @@ if [ $1 = "win32" -o $1 = "win64" ]; then
 
     windows=true
 
+    external="$external/$1"
+
     # NOTE Windows: We are building with our own MinGW.
     PATH="$external/MinGW/$MinGW_version:$external/MinGW/$MinGW_version/bin:$external/MinGW/$MinGW_version/lib:$PWD/$Qt/gnuwin32/bin:$PATH"
 
