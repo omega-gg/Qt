@@ -39,32 +39,6 @@ if [ $1 = "win32" -o $1 = "win64" ]; then
     windows=true
 
     external="$external/$1"
-
-    # NOTE Windows: We are building with our own MinGW.
-    #PATH="$external/MinGW/$MinGW_version:$external/MinGW/$MinGW_version/bin:$external/MinGW/$MinGW_version/lib:$PWD/$Qt/gnuwin32/bin:$PATH"
-
-    #echo $PATH
-
-    #echo "MinGW"
-    #ls -la $external/MinGW/$MinGW_version
-    #echo "MinGW bin"
-    #ls -la $external/MinGW/$MinGW_version/bin
-    #echo "MinGW lib"
-    #ls -la $external/MinGW/$MinGW_version/lib
-
-    #cp -r $external/MinGW/$MinGW_version/include/GLES2 $external/MinGW/$MinGW_version/i686-w64-mingw32/include
-
-    #cp $external/MinGW/$MinGW_version/lib/liblibEGL.a    $external/MinGW/$MinGW_version/i686-w64-mingw32/lib
-    #cp $external/MinGW/$MinGW_version/lib/liblibGLESv2.a $external/MinGW/$MinGW_version/i686-w64-mingw32/lib
-
-    #echo "i686-w64-mingw32/include"
-    #ls -la $external/MinGW/$MinGW_version/i686-w64-mingw32/include
-
-    #echo "i686-w64-mingw32/lib"
-    #ls -la $external/MinGW/$MinGW_version/i686-w64-mingw32/lib
-
-    #echo "gcc version"
-    #gcc --version
 else
     windows=false
 fi
@@ -110,21 +84,7 @@ fi
 if [ $windows = true ]; then
 
     # NOTE Windows: We are building with our own MinGW.
-    PATH="$external/MinGW/$MinGW_version/bin:$PWD/$Qt/gnuwin32/bin:$PATH"
-
-    cp -r $Qt/qtbase/src/3rdparty/angle/include/* $external/MinGW/$MinGW_version/i686-w64-mingw32/include
-
-    cp $external/MinGW/$MinGW_version/lib/liblibEGL.a    $external/MinGW/$MinGW_version/i686-w64-mingw32/lib
-    cp $external/MinGW/$MinGW_version/lib/liblibGLESv2.a $external/MinGW/$MinGW_version/i686-w64-mingw32/lib
-
-    echo "i686-w64-mingw32/include"
-    ls -la $external/MinGW/$MinGW_version/i686-w64-mingw32/include
-
-    echo "i686-w64-mingw32/lib"
-    ls -la $external/MinGW/$MinGW_version/i686-w64-mingw32/lib
-
-    echo "gcc version"
-    gcc --version
+    PATH="$external/MinGW/$MinGW_version/bin:$PATH"
 fi
 
 #--------------------------------------------------------------------------------------------------
@@ -144,6 +104,7 @@ if [ $windows = true ]; then
                 -nomake examples \
                 -nomake tests \
                 -skip qtdoc \
+                -opengl desktop \
                 -verbose
 else
     ./configure -release \
@@ -154,9 +115,6 @@ else
                 -skip qtdoc \
                 -verbose
 fi
-
-# TEMP
-exit 1
 
 #--------------------------------------------------------------------------------------------------
 # Build
