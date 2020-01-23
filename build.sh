@@ -40,33 +40,30 @@ if [ $1 = "win32" -o $1 = "win64" ]; then
     external="$external/$1"
 
     # NOTE Windows: We are building with our own MinGW.
-    PATH="$external/MinGW/$MinGW_version:$external/MinGW/$MinGW_version/bin:$external/MinGW/$MinGW_version/lib:$PWD/$Qt/gnuwin32/bin:$PATH"
+    #PATH="$external/MinGW/$MinGW_version:$external/MinGW/$MinGW_version/bin:$external/MinGW/$MinGW_version/lib:$PWD/$Qt/gnuwin32/bin:$PATH"
 
-    echo $PATH
+    #echo $PATH
 
-    echo "MinGW"
-    ls -la $external/MinGW/$MinGW_version
-    echo "MinGW bin"
-    ls -la $external/MinGW/$MinGW_version/bin
-    echo "MinGW lib"
-    ls -la $external/MinGW/$MinGW_version/lib
+    #echo "MinGW"
+    #ls -la $external/MinGW/$MinGW_version
+    #echo "MinGW bin"
+    #ls -la $external/MinGW/$MinGW_version/bin
+    #echo "MinGW lib"
+    #ls -la $external/MinGW/$MinGW_version/lib
 
-    cp -r $external/MinGW/$MinGW_version/include/GLES2 $external/MinGW/$MinGW_version/i686-w64-mingw32/include
+    #cp -r $external/MinGW/$MinGW_version/include/GLES2 $external/MinGW/$MinGW_version/i686-w64-mingw32/include
 
-    cp $external/MinGW/$MinGW_version/lib/liblibEGL.a    $external/MinGW/$MinGW_version/i686-w64-mingw32/lib
-    cp $external/MinGW/$MinGW_version/lib/liblibGLESv2.a $external/MinGW/$MinGW_version/i686-w64-mingw32/lib
+    #cp $external/MinGW/$MinGW_version/lib/liblibEGL.a    $external/MinGW/$MinGW_version/i686-w64-mingw32/lib
+    #cp $external/MinGW/$MinGW_version/lib/liblibGLESv2.a $external/MinGW/$MinGW_version/i686-w64-mingw32/lib
 
-    cp $external/MinGW/$MinGW_version/lib/liblibEGL.a    $external/MinGW/$MinGW_version/i686-w64-mingw32/lib/libEGL.a
-    cp $external/MinGW/$MinGW_version/lib/liblibGLESv2.a $external/MinGW/$MinGW_version/i686-w64-mingw32/lib/libGLESv2.a
+    #echo "i686-w64-mingw32/include"
+    #ls -la $external/MinGW/$MinGW_version/i686-w64-mingw32/include
 
-    echo "i686-w64-mingw32/include"
-    ls -la $external/MinGW/$MinGW_version/i686-w64-mingw32/include
+    #echo "i686-w64-mingw32/lib"
+    #ls -la $external/MinGW/$MinGW_version/i686-w64-mingw32/lib
 
-    echo "i686-w64-mingw32/lib"
-    ls -la $external/MinGW/$MinGW_version/i686-w64-mingw32/lib
-
-    echo "gcc version"
-    gcc --version
+    #echo "gcc version"
+    #gcc --version
 else
     windows=false
 fi
@@ -105,9 +102,29 @@ else
     tar -xf Qt.tar.xz
 fi
 
-# TEMP
-echo "gnuwin32"
-ls -la $PWD/$Qt/gnuwin32/bin
+#--------------------------------------------------------------------------------------------------
+# Path
+#--------------------------------------------------------------------------------------------------
+
+if [ $windows = true ]; then
+
+    # NOTE Windows: We are building with our own MinGW.
+    PATH="$external/MinGW/$MinGW_version/bin:$PWD/$Qt/gnuwin32/bin:$PATH"
+
+    cp -r $Qt/qtbase/src/3rdparty/angle/include/* $external/MinGW/$MinGW_version/i686-w64-mingw32/include
+
+    cp $external/MinGW/$MinGW_version/lib/liblibEGL.a    $external/MinGW/$MinGW_version/i686-w64-mingw32/lib
+    cp $external/MinGW/$MinGW_version/lib/liblibGLESv2.a $external/MinGW/$MinGW_version/i686-w64-mingw32/lib
+
+    echo "i686-w64-mingw32/include"
+    ls -la $external/MinGW/$MinGW_version/i686-w64-mingw32/include
+
+    echo "i686-w64-mingw32/lib"
+    ls -la $external/MinGW/$MinGW_version/i686-w64-mingw32/lib
+
+    echo "gcc version"
+    gcc --version
+fi
 
 #--------------------------------------------------------------------------------------------------
 # Configure
@@ -136,6 +153,9 @@ else
                 -skip qtdoc \
                 -verbose
 fi
+
+# TEMP
+exit 1
 
 #--------------------------------------------------------------------------------------------------
 # Build
