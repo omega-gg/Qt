@@ -50,8 +50,6 @@ if [ $1 = "win32" -o $1 = "win64" ]; then
     ls -la $external/MinGW/$MinGW_version/bin
     echo "MinGW lib"
     ls -la $external/MinGW/$MinGW_version/lib
-    echo "gnuwin32"
-    ls -la $PWD/$Qt/gnuwin32/bin
 
     cp -r $external/MinGW/$MinGW_version/include/GLES2 $external/MinGW/$MinGW_version/i686-w64-mingw32/include
 
@@ -91,6 +89,9 @@ echo "DOWNLOADING Qt"
 echo $Qt_url
 
 curl -L -o Qt.tar.xz $Qt_url
+
+echo "gnuwin32"
+ls -la $PWD/$Qt/gnuwin32/bin
 
 #--------------------------------------------------------------------------------------------------
 # Qt
