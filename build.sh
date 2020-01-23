@@ -17,6 +17,8 @@ Qt_versionB="5.12"
 Qt="qt-everywhere-src-$Qt_versionA"
 
 #Qt_url="http://download.qt.io/official_releases/qt/$Qt_versionB/$Qt_versionA/single/$Qt.tar.xz"
+
+# NOTE: That mirror seems faster than the official one.
 Qt_url="http://ftp1.nluug.nl/languages/qt/archive/qt/$Qt_versionB/$Qt_versionA/single/$Qt.tar.xz"
 
 #--------------------------------------------------------------------------------------------------
