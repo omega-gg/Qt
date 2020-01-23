@@ -124,18 +124,6 @@ echo "BUILDING Qt"
 
 if [ $windows = true ]; then
 
-    #----------------------------------------------------------------------------------------------
-    # NOTE windows: This is required for building with OpenGL ES
-
-    cp -r $PWD/qtbase/src/3rdparty/angle/include/* $PWD/qtbase/include
-
-    ls -la $PWD/qtbase/include
-
-    #----------------------------------------------------------------------------------------------
-
-    # NOTE windows: This is required for building qopengl
-    #PATH="$PWD/qtbase/include/QtANGLE:$PATH"
-
     mingw32-make
 else
     make
