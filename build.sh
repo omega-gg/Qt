@@ -95,7 +95,7 @@ fi
 
 echo "CONFIGURING Qt"
 
-path=deploy/Qt/$Qt_versionA
+path="$PWD/deploy/Qt/$Qt_versionA"
 
 mkdir -p $path
 
