@@ -95,11 +95,16 @@ fi
 
 echo "CONFIGURING Qt"
 
+path=deploy/Qt/$Qt_versionA
+
+mkdir -p $path
+
 cd $Qt
 
 if [ $windows = true ]; then
 
-    ./configure -platform win32-g++ \
+    ./configure -prefix $path \
+                -platform win32-g++ \
                 -release \
                 -opensource \
                 -confirm-license \
@@ -109,7 +114,8 @@ if [ $windows = true ]; then
                 -opengl desktop \
                 -verbose
 else
-    ./configure -release \
+    ./configure -prefix $path \
+                -release \
                 -opensource \
                 -confirm-license \
                 -nomake examples \
@@ -135,8 +141,12 @@ fi
 # Install
 #--------------------------------------------------------------------------------------------------
 
-if [ $1 = "macOS" ] || [ $1 = "linux" ]; then
+echo "INSTALLING Qt"
 
+if [ $windows = true ]; then
+
+    mingw32-make install
+else
     make install
 fi
 
@@ -144,21 +154,21 @@ fi
 # Deploy
 #--------------------------------------------------------------------------------------------------
 
-cd ..
-
-path=deploy/Qt/$Qt_versionA
-
-mkdir -p $path
-
-if [ $windows = true ]; then
-
-    mv $Qt/* $path
-
-elif [ $1 = "macOS" ]; then
-
-    mv /usr/local/Qt-$Qt_versionA/* $path
-
-elif [ $1 = "linux" ]; then
-
-    mv /usr/local/Qt-$Qt_versionA/* $path
-fi
+#cd ..
+#
+#path=deploy/Qt/$Qt_versionA
+#
+#mkdir -p $path
+#
+#if [ $windows = true ]; then
+#
+#    mv $Qt/* $path
+#
+#elif [ $1 = "macOS" ]; then
+#
+#    mv /usr/local/Qt-$Qt_versionA/* $path
+#
+#elif [ $1 = "linux" ]; then
+#
+#    mv /usr/local/Qt-$Qt_versionA/* $path
+#fi
