@@ -25,9 +25,9 @@ Qt_url="http://ftp1.nluug.nl/languages/qt/archive/qt/$Qt_versionB/$Qt_versionA/s
 # Syntax
 #--------------------------------------------------------------------------------------------------
 
-if [ $# != 1 ] || [ $1 != "win32" -a $1 != "win64" -a $1 != "linux" -a $1 != "macOS" ]; then
+if [ $# != 1 ] || [ $1 != "win32" -a $1 != "win64" -a $1 != "macOS" -a $1 != "linux" ]; then
 
-    echo "Usage: build <win32 | win64 | linux | macOS>"
+    echo "Usage: build <win32 | win64 | macOS | linux>"
 
     exit 1
 fi
