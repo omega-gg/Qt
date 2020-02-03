@@ -73,7 +73,7 @@ jobs:
 #    vmImage: "ubuntu-latest"
 #  steps:
 #  - bash: |
-#      docker run -d --name ubuntu -v $PWD:/Qt i386/ubuntu:18.04 tail -f /dev/null
+#      docker run -d --name ubuntu -v $PWD:/Qt amd64/ubuntu:18.04 tail -f /dev/null
 #      docker exec -t ubuntu bash -c "cd /Qt/..;
 #                                     apt-get update;
 #                                     apt-get -y install sudo git;

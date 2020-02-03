@@ -62,7 +62,7 @@ echo ""
 echo "DOWNLOADING Qt"
 echo $Qt_url
 
-curl -L -o Qt.tar.xz --retry 3 $Qt_url
+curl --retry 3 -L -o Qt.tar.xz $Qt_url
 
 #--------------------------------------------------------------------------------------------------
 # Qt
