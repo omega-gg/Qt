@@ -51,7 +51,7 @@ fi
 
 if [ $1 = "linux" ]; then
 
-    apt-get -y install build-essential qtdeclarative5-dev curl xz-utils python
+    sudo apt-get -y install build-essential qtdeclarative5-dev curl xz-utils python
 fi
 
 #--------------------------------------------------------------------------------------------------
