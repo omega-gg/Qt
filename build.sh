@@ -38,11 +38,11 @@ fi
 
 if [ $1 = "win32" -o $1 = "win64" ]; then
 
-    windows=true
+    os="windows"
 
     external="$external/$1"
 else
-    windows=false
+    os="default"
 fi
 
 #--------------------------------------------------------------------------------------------------
@@ -81,7 +81,7 @@ curl --retry 3 -L -o Qt.tar.xz $Qt_url
 echo "EXTRACTING Qt"
 
 # NOTE Windows: We need to use 7z otherwise it seems to freeze Azure.
-if [ $windows = true ]; then
+if [ $os = "windows" ]; then
 
     7z x Qt.tar.xz
     7z x Qt.tar
@@ -93,7 +93,7 @@ fi
 # Path
 #--------------------------------------------------------------------------------------------------
 
-if [ $windows = true ]; then
+if [ $os = "windows" ]; then
 
     # NOTE Windows: We are building with our own MinGW.
     PATH="$external/MinGW/$MinGW_version/bin:$PATH"
@@ -111,7 +111,7 @@ mkdir -p $path
 
 cd $Qt
 
-if [ $windows = true ]; then
+if [ $os = "windows" ]; then
 
     ./configure -prefix $path \
                 -platform win32-g++ \
@@ -140,7 +140,7 @@ fi
 
 echo "BUILDING Qt"
 
-if [ $windows = true ]; then
+if [ $os = "windows" ]; then
 
     mingw32-make
 else
@@ -153,7 +153,7 @@ fi
 
 echo "INSTALLING Qt"
 
-if [ $windows = true ]; then
+if [ $os = "windows" ]; then
 
     mingw32-make install
 else
@@ -170,7 +170,7 @@ fi
 #
 #mkdir -p $path
 #
-#if [ $windows = true ]; then
+#if [ $os = "windows" ]; then
 #
 #    mv $Qt/* $path
 #
