@@ -11,8 +11,8 @@ external="$PWD/../3rdparty"
 
 MinGW_version="7.3.0"
 
-Qt_versionA="5.12.3"
-Qt_versionB="5.12"
+Qt_versionA="5.14.1"
+Qt_versionB="5.14"
 
 Qt="qt-everywhere-src-$Qt_versionA"
 
@@ -83,8 +83,8 @@ echo "EXTRACTING Qt"
 # NOTE Windows: We need to use 7z otherwise it seems to freeze Azure.
 if [ $os = "windows" ]; then
 
-    7z x Qt.tar.xz
-    7z x Qt.tar
+    7z x Qt.tar.xz > nul
+    7z x Qt.tar    > nul
 else
     tar -xf Qt.tar.xz
 fi
