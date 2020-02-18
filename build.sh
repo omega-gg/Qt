@@ -16,10 +16,10 @@ Qt_versionB="5.14"
 
 Qt="qt-everywhere-src-$Qt_versionA"
 
-#Qt_url="http://download.qt.io/official_releases/qt/$Qt_versionB/$Qt_versionA/single/$Qt.tar.xz"
+#Qt_url="http://download.qt.io/official_releases/qt/$Qt_versionB/$Qt_versionA/single/$Qt.zip"
 
 # NOTE: That mirror seems faster than the official one.
-Qt_url="http://ftp1.nluug.nl/languages/qt/archive/qt/$Qt_versionB/$Qt_versionA/single/$Qt.tar.xz"
+Qt_url="http://ftp1.nluug.nl/languages/qt/archive/qt/$Qt_versionB/$Qt_versionA/single/$Qt.zip"
 
 #--------------------------------------------------------------------------------------------------
 # Syntax
@@ -72,7 +72,7 @@ echo ""
 echo "DOWNLOADING Qt"
 echo $Qt_url
 
-curl --retry 3 -L -o Qt.tar.xz $Qt_url
+curl --retry 3 -L -o Qt.zip $Qt_url
 
 #--------------------------------------------------------------------------------------------------
 # Qt
@@ -80,14 +80,7 @@ curl --retry 3 -L -o Qt.tar.xz $Qt_url
 
 echo "EXTRACTING Qt"
 
-# NOTE Windows: We need to use 7z otherwise it seems to freeze Azure.
-if [ $os = "windows" ]; then
-
-    7z x Qt.tar.xz
-    7z x Qt.tar
-else
-    tar -xf Qt.tar.xz
-fi
+unzip -q Qt.zip
 
 #--------------------------------------------------------------------------------------------------
 # Path
