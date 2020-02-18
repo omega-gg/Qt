@@ -83,8 +83,8 @@ echo "EXTRACTING Qt"
 # NOTE Windows: We need to use 7z otherwise it seems to freeze Azure.
 if [ $os = "windows" ]; then
 
-    7z x Qt.tar.xz > nul
-    7z x Qt.tar    > nul
+    7z x Qt.tar.xz
+    7z x Qt.tar
 else
     tar -xf Qt.tar.xz
 fi
