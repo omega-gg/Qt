@@ -113,6 +113,7 @@ if [ $os = "windows" ]; then
                 -confirm-license \
                 -nomake examples \
                 -nomake tests \
+                -skip qtwebengine \
                 -skip qtdoc \
                 -opengl desktop \
                 -verbose
