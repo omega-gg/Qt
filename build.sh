@@ -11,7 +11,7 @@ external="$PWD/../3rdparty"
 
 MinGW_version="7.3.0"
 
-Qt_versionA="5.14.1"
+Qt_versionA="5.14.2"
 Qt_versionB="5.14"
 
 Qt="qt-everywhere-src-$Qt_versionA"
