@@ -9,8 +9,6 @@ external="$PWD/../3rdparty"
 
 #--------------------------------------------------------------------------------------------------
 
-MinGW_version="7.3.0"
-
 Qt_versionA="5.14.2"
 Qt_versionB="5.14"
 
@@ -20,6 +18,11 @@ Qt="qt-everywhere-src-$Qt_versionA"
 
 # NOTE: That mirror seems faster than the official one.
 Qt_url="http://ftp1.nluug.nl/languages/qt/archive/qt/$Qt_versionB/$Qt_versionA/single/$Qt.tar.xz"
+
+#--------------------------------------------------------------------------------------------------
+# Windows
+
+MinGW_version="7.3.0"
 
 #--------------------------------------------------------------------------------------------------
 # Syntax
